@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Portafolio</title>
+  <link rel="stylesheet" href="Lotes.css">
+</head>
+<body>
+
+  <header>
+    <h1>Mi Portafolio</h1>
+    <nav>
+      <a href="Lotes.html">Inicio</a>
+      <a href="#proyectos">Proyectos</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="proyectos">
+      <h2>Galería de Proyectos</h2>
+      <div class="visor">
+        <button class="nav-btn" onclick="anterior()">&#10094;</button>
+        <img id="imagen-principal" src="carro1.jpeg" alt="Imagen grande">
+        <button class="nav-btn" onclick="siguiente()">&#10095;</button>
+      </div>
+<div class="miniaturas">
+  <img src="carro 1.jpeg" alt="Miniatura 1" onclick="window.location.href='carro1.html'" class="activa">
+  <img src="carro 2.jpeg" alt="Miniatura 2" onclick="window.location.href='carro2.html'">
+  <img src="carro 3.jpeg" alt="Miniatura 3" onclick="window.location.href='carro3.html'">
+</div>
+
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Alejandro. Todos los derechos reservados.</p>
+  </footer>
+<script>
+  const imagenes = ["carro 1.jpeg", "carro 2.jpeg", "carro 3.jpeg"];
+  let indice = 0;
+
+  function actualizarImagen() {
+    const imagenPrincipal = document.getElementById("imagen-principal");
+    imagenPrincipal.src = imagenes[indice];
+
+    document.querySelectorAll('.miniaturas img').forEach((img, i) => {
+      img.classList.toggle('activa', i === indice);
+    });
+  }
+
+  function seleccionar(i) {
+    indice = i;
+    actualizarImagen();
+  }
+
+  function anterior() {
+    indice = (indice - 1 + imagenes.length) % imagenes.length;
+    actualizarImagen();
+  }
+
+  function siguiente() {
+    indice = (indice + 1) % imagenes.length;
+    actualizarImagen();
+  }
+
+  // Esta línea asegura que al cargar la página se muestre la imagen correcta
+  window.addEventListener('DOMContentLoaded', actualizarImagen);
+</script>
+
+</body>
+</html>
+
+
